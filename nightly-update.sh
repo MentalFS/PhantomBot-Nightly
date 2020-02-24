@@ -46,9 +46,19 @@ function update() {
 	ln -sv german scripts/lang/deutsch
 	echo
 
+	echo === Alerts ===
+	mkdir -p scripts/custom/systems scripts/lang/english/custom/systems scripts/lang/german/custom/systems
+	download "$CYNICAL_CUSTOM_BASEURL/custom/systems/alertSystem/alertSystem.js" alertSystem.js
+	cp -pr nightly-download/alertSystem.js scripts/custom/systems/alertSystem.js
+	download "$CYNICAL_CUSTOM_BASEURL/lang/english/custom/systems/system-alertSystem.js" system-alertSystem.en.js
+	cp -pr nightly-download/system-alertSystem.en.js scripts/lang/english/custom/systems/system-alertSystem.js
+	download "$CYNICAL_CUSTOM_BASEURL/lang/german/custom/systems/system-alertSystem.js" system-alertSystem.de.js
+	cp -pr nightly-download/system-alertSystem.de.js scripts/lang/german/custom/systems/system-alertSystem.js
+	echo
+
 	echo === Challenge ===
 	mkdir -p scripts/custom/games scripts/lang/english/custom/games scripts/lang/german/custom/games
-	download "$CYNICAL_CUSTOM_BASEURL/custom/games/challengeSystem/challengeSystem.js"  challengeSystem.js
+	download "$CYNICAL_CUSTOM_BASEURL/custom/games/challengeSystem/challengeSystem.js" challengeSystem.js
 	cp -pr nightly-download/challengeSystem.js scripts/custom/games/challengeSystem.js
 	download "$CYNICAL_CUSTOM_BASEURL/lang/english/custom/games/games-challengeSystem.js" games-challengeSystem.en.js
 	cp -pr nightly-download/games-challengeSystem.en.js scripts/lang/english/custom/games/games-challengeSystem.js
