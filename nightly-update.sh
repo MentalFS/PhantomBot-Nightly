@@ -34,6 +34,7 @@ function update() {
 	unzip -q nightly-download/PhantomBot.zip -d nightly-temp/PhantomBot
 	find nightly-temp/PhantomBot/*/config -type f -name '*.aac' -print0 | xargs -0r rm -f
 	find nightly-temp/PhantomBot/*/config -type f -name '*.ogg' -print0 | xargs -0r rm -f
+	cp -pr  nightly-temp/PhantomBot/*/addons/ignorebots.txt nightly-temp/ignorebots.orig
 	cp -pr nightly-temp/PhantomBot/*/* .
 	chmod u+x -v launch*.sh
 	test -d java-runtime* && chmod u+x -v java-runtime*/bin/*
@@ -77,6 +78,7 @@ function update() {
 	echo === Finish ===
 	echo Data/Configuration:
 	tar xzf "nightly-backup/$BACKUP_NAME-data.tar.gz" || exit 1
+	cp -pr nightly-temp/ignorebots.orig addons/ignorebots.orig
 	tar tzf "nightly-backup/$BACKUP_NAME-data.tar.gz" | sed -n 's:^./::;s:.*/$:\0:p' | sort | xargs -rd '\n' du -sch
 	echo
 	echo Caches/Backups:
