@@ -78,7 +78,9 @@ function update() {
 	echo === Finish ===
 	echo Data/Configuration:
 	tar xzf "nightly-backup/$BACKUP_NAME-data.tar.gz" || exit 1
+	test -f addons/ignorebots.local || echo twitternachricht > addons/ignorebots.local
 	cp -pr nightly-temp/ignorebots.orig addons/ignorebots.orig
+	cat addons/ignorebots.local addons/ignorebots.orig > addons/ignorebots.txt
 	tar tzf "nightly-backup/$BACKUP_NAME-data.tar.gz" | sed -n 's:^./::;s:.*/$:\0:p' | sort | xargs -rd '\n' du -sch
 	echo
 	echo Caches/Backups:
